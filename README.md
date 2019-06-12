@@ -13,6 +13,22 @@ This repository contains utilities and example playbooks showing users how to us
 ## Pre-requisites
 - In the directory where you clone this repository, you must create a `data/bf_facts` folder. This folder is where the `bf_tutorial_1.yml` playbook will create individual fact files for each device in the example network
 
+- If you are using a Python virtual environment and are running Ansible within that environment, you will need to ensure that the following lines appear in either your `inventory` 
+```
+  [localhost]
+  ansible_connection=local
+  localhost ansible_python_interpreter=python
+```
+
+or these lines appear in your `ansible.cfg` file. For a more detailed example of this file, follow this [link](https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg)
+
+```
+  [inventory]
+  localhost ansible_python_interpreter=python
+```
+
+
+
 ## Playbook invocation
 
 - **Setup Batfish**

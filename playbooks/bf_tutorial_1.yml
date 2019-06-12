@@ -1,0 +1,32 @@
+---
+- name: Welcome to the first Batfish Tutorial!
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - batfish.base
+
+  tasks:
+
+  - include_tasks: batfish_docker_start.yml
+
+  - name: Pause for Batfish docker container to initialize
+    pause:
+      seconds: 5
+
+  - name: Setup connection to Batfish service
+    bf_session:
+      host: localhost
+      name: local_batfish
+  
+  - name: Initialize the example network
+    bf_init_snapshot:
+      network: example_network
+      snapshot: example_snapshot
+      snapshot_data: ../networks/example
+      overwrite: true
+
+  - name: Retrieve Batfish Facts
+    bf_extract_facts:
+      output_directory: data/bf_facts
+    register: bf_facts

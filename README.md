@@ -39,6 +39,8 @@ or these lines appear in your `ansible.cfg` file. For a more detailed example of
   localhost ansible_python_interpreter=python
 ```
 
+- Python dependencies listed in `requirements.txt` need to be installed: `pip install -r requirements.txt`
+
 
 ## Playbook invocation
 

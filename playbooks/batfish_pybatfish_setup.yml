@@ -1,5 +1,5 @@
 ---
-- name: Getting Started with Batfish and Ansible
+- name: Playbook to install Pybatfish on localhost
   hosts: localhost
   connection: local
   gather_facts: no
@@ -9,9 +9,6 @@
     - name: Check if in Python VENV
       shell: "python -c 'import sys; print(\"1\" if (hasattr(sys, \"real_prefix\") or (hasattr(sys,\"base_prefix\") and sys.base_prefix != sys.prefix)) else \"0\")'"
       register: python_venv
-
-#    - debug:
-#        var: python_venv.stdout[0]
 
     - name: Not in Python VENV, ask user to proceed or not
       block:

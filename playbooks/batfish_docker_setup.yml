@@ -1,6 +1,5 @@
 ---
-
-- name: Playbook to check docker setup and start service with latest container
+- name: Playbook to install latest Batfish docker container on localhost
   hosts: localhost
   connection: local
   gather_facts: no
@@ -11,9 +10,6 @@
       shell: "docker --version"
       register: docker_installed
 
-#    - debug:
-#        var: docker_installed
-
     - name: Download latest Batfish Docker image
       block:
         #Note; If the local image is the latest version, this does NOTHING. So the variable `docker_dwld` is just empty
@@ -21,6 +17,8 @@
           docker_image:
             repository: batfish/allinone
             name: batfish/allinone
+            force: yes
+            state: present
             pull: yes
           register: docker_dwld
 
@@ -30,7 +28,7 @@
 
         - name: Print information about image download
           debug: msg="{{docker_dwld.image}}"
-          when: docker_dwld.changed|bool == true
+          when: docker_dwld.failed|bool == false
 
       when: docker_installed.failed|bool == false and docker_installed.stdout is search("Docker version")
 

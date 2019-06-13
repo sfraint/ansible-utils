@@ -5,9 +5,15 @@ This repository contains utilities and example playbooks showing users how to us
 
 ## Playbooks
 
+### Setup
+
 - **batfish_setup.yml**: Retrieves lastest Batfish docker image from DockerHub and installs the latest version of Pybatfish and other python dependencies. 
 
+### Tutorials
+
 - **bf_tutorial_1.yml**: The first Batfish tutorial, showing you how to retrieve facts about network devices
+
+- **bf_tutorial_2.yml**: The second Batfish tutorial, showing you how to validate facts about network devices
 
 
 ## Pre-requisites
@@ -26,7 +32,6 @@ or these lines appear in your `ansible.cfg` file. For a more detailed example of
   [inventory]
   localhost ansible_python_interpreter=python
 ```
-
 
 
 ## Playbook invocation

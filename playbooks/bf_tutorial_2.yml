@@ -1,5 +1,5 @@
 ---
-- name: Welcome to the first Batfish Tutorial!
+- name: Welcome to the second Batfish Tutorial!
   hosts: all
   gather_facts: no
   roles:
@@ -28,24 +28,13 @@
         snapshot_data: ../networks/example
         overwrite: true
 
-    - name: Retrieve Batfish Facts
-      bf_extract_facts:
-        output_directory: data/bf_facts
-      register: bf_facts
+    - name: Validate facts gathered by Batfish
+      bf_validate_facts:
+        expected_facts: data/validation
+      register: bf_validate
 
-    - name: Display select facts gathered by Batfish
-      block:
-
-      - name: Display Batfish Facts for as1border1
-        debug: msg="{{bf_facts.result.nodes.as1border1}}"
-
-      - name: Display NTP configuration for all nodes
-        debug: msg=" {{item.value.NTP}} "
-        with_dict: "{{bf_facts.result.nodes}}"
-        loop_control:
-          label: " {{item.key}}.NTP "
-
-      when: bf_facts.failed|bool == false
+    - name: Display Batfish validation result details
+      debug: msg="{{bf_validate}}"
 
     - include_tasks: batfish_docker_stop.yml
 

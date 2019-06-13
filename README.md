@@ -11,12 +11,18 @@ This repository contains utilities and example playbooks showing users how to us
 
 ### Tutorials
 
-- **bf_tutorial_1.yml**: The first Batfish tutorial, showing you how to retrieve facts about network devices
+- **bf_tutorial_1.yml**: Shows you how to retrieve facts about network devices
 
-- **bf_tutorial_2.yml**: The second Batfish tutorial, showing you how to validate facts about network devices
+- **bf_tutorial_2.yml**: Shows you how to validate facts about network devices
+
+- **bf_tutorial_3.yml**: Shows you how to validate the routing and forwarding behavior of the network
+
+- **bf_tutorial_4.yml**: Shows you how to validate the behavior of a packet filter(ACL/Firewall rule) 
 
 
 ## Pre-requisites
+- Docker must be installed and running on your machine
+
 - In the directory where you clone this repository, you must create a `data/bf_facts` folder. This folder is where the `bf_tutorial_1.yml` playbook will create individual fact files for each device in the example network
 
 - If you are using a Python virtual environment and are running Ansible within that environment, you will need to ensure that the following lines appear in either your `inventory` 
@@ -36,11 +42,20 @@ or these lines appear in your `ansible.cfg` file. For a more detailed example of
 
 ## Playbook invocation
 
-- **Setup Batfish**
+- **Setup Batfish on your local machine**
 
+  This playbook will download the latest Batfish docker container, Pybatfish SDK and other Python requirements and install it on your local machine. It always runs on `localhost`
+
+  The playbook has some rudimentary error checking built into it:  
+  - Aborts if Docker is not running.
+  - Warns if it does not detect a Python virtual environment and ask you to confirm that you want to proceed with the installation
+  
   `ansible-playbook -i inventory playbooks/batfish_setup.yml`
 
 - **Run the first Batfish tutorial**
+
+   Batfish is designed to provide complete network analysis, which is why all Batfish related modules should always to delegated to `localhost` and set to run once.
+   This playbook is setup that way, so you can incorporate non-Batfish tasks that need to run across other hosts in your inventory
 
   `ansible-playbook -i inventory playbooks/bf_tutorial_1.yml`
 

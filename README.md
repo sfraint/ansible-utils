@@ -7,7 +7,7 @@ This repository contains utilities and example playbooks showing users how to us
 
 ### Setup
 
-- **batfish_setup.yml**: Retrieves lastest Batfish docker image from DockerHub and installs the latest version of Pybatfish and other python dependencies. 
+- **batfish_setup.yml**: Retrieves latest Batfish docker image from DockerHub and installs the latest version of Pybatfish along with the other python module requirements. 
 
 ### Tutorials
 

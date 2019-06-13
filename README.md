@@ -24,6 +24,8 @@ This repository contains utilities and example playbooks showing users how to us
 ## Pre-requisites
 - Docker must be installed and running on your machine
 
+- Install the [Batfish role](https://galaxy.ansible.com/batfish/base) from Ansible Galaxy 
+
 - In the directory where you clone this repository, you must create a `data/bf_facts` folder. This folder is where the `bf_tutorial_1.yml` playbook will create individual fact files for each device in the example network
 
 - If you are using a Python virtual environment and are running Ansible within that environment, you will need to ensure that the following lines appear in either your `inventory` 
